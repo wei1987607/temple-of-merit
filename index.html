@@ -1179,7 +1179,7 @@ tr.is-highlight > :last-child { box-shadow: 12px 0 var(--fill-tertiary); }
 
         /* ---------- Sound ---------- */
         let ac, master, nb, rvIn = null, muted = false, chantBuf = null, bellBuf = null;
-        const VOL = 0.55, CHANT_SRC = "chant-loop.mp3", BELL_SRC = "bell.mp3";
+        const VOL = 0.55, CHANT_SRC = "heart-sutra-v2.mp3", BELL_SRC = "temple-bell-v2.mp3";
         function noiseBuf(s) { const b = ac.createBuffer(1, ac.sampleRate * s, ac.sampleRate), d = b.getChannelData(0); for (let i = 0; i < d.length; i++) d[i] = Math.random() * 2 - 1; return b; }
         function lfo(param, rate, depth) { const o = ac.createOscillator(), g = ac.createGain(); o.frequency.value = rate; g.gain.value = depth; o.connect(g); g.connect(param); o.start(); }
         function env(g, t, a, v, dec) { g.gain.setValueAtTime(0.0001, t); g.gain.exponentialRampToValueAtTime(v, t + a); g.gain.exponentialRampToValueAtTime(0.0001, t + a + dec); }
@@ -1195,7 +1195,7 @@ tr.is-highlight > :last-child { box-shadow: 12px 0 var(--fill-tertiary); }
             o.frequency.setValueAtTime(f * p * 1.04, t); o.frequency.exponentialRampToValueAtTime(f * p, t + 0.02);
             env(g, t, 0.0015, v * a, d); o.connect(g); g.connect(master); o.start(t); o.stop(t + d + 0.05);
           });
-          noiseHit(t, v * 0.5, 2600 * p, 0.012, 1.2, 0.0008); noiseHit(t, v * 0.35, 700 * p, 0.05, 2.5);
+          noiseHit(t, v * 0.25, 2600 * p, 0.008, 1.2, 0.0008);
         }
         function bell(f, v, dur, dt = 0) {
           if (!ac) return; const t = ac.currentTime + dt;
@@ -1223,7 +1223,7 @@ tr.is-highlight > :last-child { box-shadow: 12px 0 var(--fill-tertiary); }
           const chantP = loadBuf(CHANT_SRC).then((b) => (chantBuf = b)).catch(() => {});
           bellP.then(() => {
             bigBell(1);
-            setTimeout(() => chantP.then(() => { if (chantBuf) playBuf(chantBuf, 0.85, true, 4); else setInterval(() => knock(0.05, 0.85), 1200); }), 3800);
+            setTimeout(() => chantP.then(() => { if (chantBuf) playBuf(chantBuf, 0.9, true, 3);  }), 3800);
             setInterval(() => bigBell(0.35), 75000);
           });
           document.addEventListener("visibilitychange", () => { try { document.hidden ? ac.suspend() : ac.resume(); } catch (e) {} });
@@ -1333,7 +1333,7 @@ tr.is-highlight > :last-child { box-shadow: 12px 0 var(--fill-tertiary); }
           addMerit(10, bInc); bInc.classList.add("x-cd"); povBusy = true; pv("povFish", false); hidePov();
           const pi = $("povInc"); pi.classList.remove("x-place"); pv("povInc", true);
           [500, 1400, 2300].forEach((d) => setTimeout(() => bell(523, 0.05, 2), d));
-          setTimeout(() => { pi.classList.add("x-place"); whoosh(); }, 3100);
+          setTimeout(() => { pi.classList.add("x-place"); }, 3100);
           setTimeout(() => { pv("povInc", false); pi.classList.remove("x-place"); povBusy = false; $("sticks").classList.add("x-on"); boostUntil = performance.now() + 8000; toast("香已敬上", "Incense offered"); }, 3900);
           setTimeout(() => { bInc.classList.remove("x-cd"); $("sticks").classList.remove("x-on"); }, 11900);
         };

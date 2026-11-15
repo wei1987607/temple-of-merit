@@ -922,9 +922,11 @@ tr.is-highlight > :last-child { box-shadow: 12px 0 var(--fill-tertiary); }
       .x-ckbtn .x-dot { position: absolute; top: 0; right: 14px; width: 10px; height: 10px; border-radius: 50%; background: #ff5a3a; box-shadow: 0 0 6px #ff5a3a; }
       .x-ckbtn.x-done .x-dot { display: none; }
       /* third person world */
-      .x-w3 { position: absolute; display: none; }
-      .x-3p .x-w3 { display: block; }
-      .x-3p .x-world, .x-3p .x-fx, .x-3p .x-pov, .x-3p .x-dim, .x-3p .x-tube { display: none !important; }
+      .x-w3 { position: absolute; opacity: 0; transition: opacity 220ms var(--ease-out); }
+      .x-3p .x-w3 { opacity: 1; }
+      .x-stage:not(.x-3p) .x-w3, .x-stage:not(.x-3p) .x-w3 * { pointer-events: none !important; }
+      .x-3p .x-world, .x-3p .x-fx, .x-3p .x-pov, .x-3p .x-dim, .x-3p .x-tube { opacity: 0 !important; }
+      .x-3p .x-world, .x-3p .x-world *, .x-3p .x-fx, .x-3p .x-fx *, .x-3p .x-pov, .x-3p .x-pov *, .x-3p .x-dim, .x-3p .x-tube, .x-3p .x-tube * { pointer-events: none !important; }
       .x-w3 > img.x-h3 { position: absolute; inset: 0; width: 100%; height: 100%; display: block; pointer-events: none; }
       .x-sp { position: absolute; left: 0; top: 0; width: 0; height: 0; pointer-events: none; }
       .x-sp > * { position: absolute; bottom: 0; left: 0; transform: translateX(-50%); display: block; }
@@ -1790,6 +1792,12 @@ tr.is-highlight > :last-child { box-shadow: 12px 0 var(--fill-tertiary); }
           fitAll();
         }
         $("v1").onclick = () => setView(false); $("v3").onclick = () => setView(true);
+        /* preload + decode the 3rd-person hall in the background so switching views never shows black */
+        (function pre3() {
+          const go = () => { try { if (!loaded3) { load3(); layout3(); } w3.querySelectorAll("img").forEach((im) => { if (im.decode) im.decode().catch(() => {}); }); } catch (e) {} };
+          const idle = window.requestIdleCallback || ((f) => setTimeout(f, 1));
+          setTimeout(() => idle(go, { timeout: 3000 }), 2500);
+        })();
         addEventListener("resize", () => { if (is3p) layout3(); });
 
         /* --- walking (rAF only while moving): distance-driven walk cycle, view chosen by direction --- */

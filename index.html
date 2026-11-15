@@ -872,7 +872,7 @@ tr.is-highlight > :last-child { box-shadow: 12px 0 var(--fill-tertiary); }
       .x-pfish .x-fishbody.x-hit { animation: x-fsq 200ms ease-out; }
       @keyframes x-fsq { 40% { transform: translateX(-50%) scale(1.04, .95); } }
       .x-pfish .x-mhand { position: absolute; right: -8%; bottom: 14%; width: 50%; display: block; transform-origin: 85% 90%; transform: rotate(6deg); }
-      .x-pfish .x-mhand.x-hit { animation: x-strike 240ms cubic-bezier(.3,0,.2,1); }
+      .x-pfish .x-mhand.x-hit { animation: x-strike 420ms cubic-bezier(.3,0,.2,1); }
       @keyframes x-strike { 0% { transform: rotate(6deg); } 40% { transform: rotate(-24deg) translate(-4%, 6%); } 100% { transform: rotate(6deg); } }
       .x-pfish.x-on { transform: translate(-50%, 0); }
       .x-pray { width: 82%; }
@@ -1317,16 +1317,16 @@ tr.is-highlight > :last-child { box-shadow: 12px 0 var(--fill-tertiary); }
         function hidePov() { ["povPray", "povInc", "povTube"].forEach((id) => pv(id, false)); }
         let fishSeq = false;
         function oneKnock(i) {
-          restart($("povMallet"), "x-hit"); setTimeout(() => { restart($("povFishBody"), "x-hit"); restart(stage, "x-jolt"); knock(0.5, i === 2 ? 0.97 : 1); }, 95);
+          restart($("povMallet"), "x-hit"); setTimeout(() => { restart($("povFishBody"), "x-hit"); knock(0.5, i === 2 ? 0.97 : 1); }, 165);
           knocks++; addMerit(1, bFish);
           if (knocks % 108 === 0) { addMerit(10, $("merit")); toast("一百零八响，烦恼尽消", "108 knocks — worries released"); bell(392, 0.08, 4); }
         }
         bFish.onclick = () => {
           if (fishSeq) return; fishSeq = true; restart(bFish, "x-hit");
           if (!povBusy) { hidePov(); pv("povFish", true); }
-          [0, 330, 660].forEach((d, i) => setTimeout(() => oneKnock(i), 160 + d));
-          setTimeout(() => (fishSeq = false), 1150);
-          clearTimeout(fishT); fishT = setTimeout(() => pv("povFish", false), 3200);
+          [0, 800, 1600].forEach((d, i) => setTimeout(() => oneKnock(i), 160 + d));
+          setTimeout(() => (fishSeq = false), 2500);
+          clearTimeout(fishT); fishT = setTimeout(() => pv("povFish", false), 4200);
         };
         bInc.onclick = () => {
           if (bInc.classList.contains("x-cd")) return;

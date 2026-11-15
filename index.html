@@ -999,7 +999,7 @@ tr.is-highlight > :last-child { box-shadow: 12px 0 var(--fill-tertiary); }
           </div>
 
           <div class="x-over" id="about" role="dialog" aria-label="说明 · About">
-            <div class="x-card x-small"><p class="x-lvl" style="font: var(--type-heading)">仅供娱乐<span class="x-en">For fun only</span></p><p style="margin-top:12px;font-size:11px;opacity:.7;line-height:1.5">诵经录音：福州南少林寺僧众诵经 Monks chanting, South Shaolin Temple, Fuzhou — mycompasstv (Freesound), CC0<br/>钟声 Bonsyou (長命寺梵鐘) — Jnn, CC BY 2.1 JP<br/>via Wikimedia Commons</p></div>
+            <div class="x-card x-small"><p class="x-lvl" style="font: var(--type-heading)">仅供娱乐<span class="x-en">For fun only</span></p><p style="margin-top:12px;font-size:11px;opacity:.7;line-height:1.5">《大悲咒》与「阿弥陀佛」为语音合成 Great Compassion Mantra &amp; “Amitabha” — synthesized voice<br/>钟声 Bonsyou (長命寺梵鐘) — Jnn, CC BY 2.1 JP<br/>via Wikimedia Commons</p></div>
           </div>
 
           <div class="x-over x-splash x-show" id="splash">
@@ -1178,8 +1178,8 @@ tr.is-highlight > :last-child { box-shadow: 12px 0 var(--fill-tertiary); }
         const restart = (el, c) => { el.classList.remove(c); void el.offsetWidth; el.classList.add(c); };
 
         /* ---------- Sound ---------- */
-        let ac, master, nb, rvIn = null, muted = false, chantBuf = null, bellBuf = null;
-        const VOL = 0.55, CHANT_SRC = "chant-monks-v3.mp3", BELL_SRC = "temple-bell-v2.mp3";
+        let ac, master, nb, rvIn = null, muted = false, chantBuf = null, bellBuf = null, amtfBuf = null, chantG = null;
+        const VOL = 0.55, CHANT_SRC = "dabeizhou-v1.mp3", BELL_SRC = "temple-bell-v2.mp3", AMTF_SRC = "amituofo-v1.mp3";
         function noiseBuf(s) { const b = ac.createBuffer(1, ac.sampleRate * s, ac.sampleRate), d = b.getChannelData(0); for (let i = 0; i < d.length; i++) d[i] = Math.random() * 2 - 1; return b; }
         function lfo(param, rate, depth) { const o = ac.createOscillator(), g = ac.createGain(); o.frequency.value = rate; g.gain.value = depth; o.connect(g); g.connect(param); o.start(); }
         function env(g, t, a, v, dec) { g.gain.setValueAtTime(0.0001, t); g.gain.exponentialRampToValueAtTime(v, t + a); g.gain.exponentialRampToValueAtTime(0.0001, t + a + dec); }
@@ -1211,7 +1211,13 @@ tr.is-highlight > :last-child { box-shadow: 12px 0 var(--fill-tertiary); }
         function playBuf(b, v, loop, fade) {
           if (!ac || !b) return null; const s = ac.createBufferSource(), g = ac.createGain(); s.buffer = b; s.loop = !!loop;
           const t = ac.currentTime; if (fade) { g.gain.setValueAtTime(0.0001, t); g.gain.exponentialRampToValueAtTime(v, t + fade); } else g.gain.value = v;
-          s.connect(g); g.connect(master); s.start(t); return s;
+          s.connect(g); g.connect(master); s.start(t); s._g = g; return s;
+        }
+        let amtfAt = 0;
+        function amituofo() {
+          if (!ac || !amtfBuf || muted) return; const t = ac.currentTime; if (t - amtfAt < 1.5) return; amtfAt = t;
+          if (chantG) { chantG.gain.setTargetAtTime(0.3, t, 0.15); chantG.gain.setTargetAtTime(0.9, t + 2.2, 0.6); }
+          playBuf(amtfBuf, 1.0);
         }
         function bigBell(v = 1) { if (bellBuf) playBuf(bellBuf, v); else bell(98, 0.16, 9); }
         function initAudio() {
@@ -1220,10 +1226,11 @@ tr.is-highlight > :last-child { box-shadow: 12px 0 var(--fill-tertiary); }
           try {
           master = ac.createGain(); master.gain.value = VOL; master.connect(ac.destination);
           const bellP = loadBuf(BELL_SRC).then((b) => (bellBuf = b)).catch(() => {});
+          loadBuf(AMTF_SRC).then((b) => (amtfBuf = b)).catch(() => {});
           const chantP = loadBuf(CHANT_SRC).then((b) => (chantBuf = b)).catch(() => {});
           bellP.then(() => {
             bigBell(1);
-            setTimeout(() => chantP.then(() => { if (chantBuf) playBuf(chantBuf, 0.9, true, 3);  }), 3800);
+            setTimeout(() => chantP.then(() => { if (chantBuf) { const cs = playBuf(chantBuf, 0.9, true, 3); chantG = cs && cs._g; }  }), 3800);
             setInterval(() => bigBell(0.35), 75000);
           });
           document.addEventListener("visibilitychange", () => { try { document.hidden ? ac.suspend() : ac.resume(); } catch (e) {} });
@@ -1325,6 +1332,7 @@ tr.is-highlight > :last-child { box-shadow: 12px 0 var(--fill-tertiary); }
           if (fishSeq) return; fishSeq = true; restart(bFish, "x-hit");
           if (!povBusy) { hidePov(); pv("povFish", true); }
           [0, 800, 1600].forEach((d, i) => setTimeout(() => oneKnock(i), 160 + d));
+          setTimeout(amituofo, 2350);
           setTimeout(() => (fishSeq = false), 2500);
           clearTimeout(fishT); fishT = setTimeout(() => pv("povFish", false), 4200);
         };
@@ -1334,7 +1342,7 @@ tr.is-highlight > :last-child { box-shadow: 12px 0 var(--fill-tertiary); }
           const pi = $("povInc"); pi.classList.remove("x-place"); pv("povInc", true);
           [500, 1400, 2300].forEach((d) => setTimeout(() => bell(523, 0.05, 2), d));
           setTimeout(() => { pi.classList.add("x-place"); }, 3100);
-          setTimeout(() => { pv("povInc", false); pi.classList.remove("x-place"); povBusy = false; $("sticks").classList.add("x-on"); boostUntil = performance.now() + 8000; toast("香已敬上", "Incense offered"); }, 3900);
+          setTimeout(() => { pv("povInc", false); pi.classList.remove("x-place"); povBusy = false; $("sticks").classList.add("x-on"); boostUntil = performance.now() + 8000; toast("香已敬上", "Incense offered"); amituofo(); }, 3900);
           setTimeout(() => { bInc.classList.remove("x-cd"); $("sticks").classList.remove("x-on"); }, 11900);
         };
         const BLESS = [["心诚则灵", "Sincerity brings blessings"], ["阿弥陀佛", "Amitabha"], ["福慧双修", "Blessings and wisdom"]];
@@ -1343,6 +1351,7 @@ tr.is-highlight > :last-child { box-shadow: 12px 0 var(--fill-tertiary); }
           addMerit(3, bBow); pv("povPray", true);
           setTimeout(() => { $("povPray").classList.add("x-low"); world.classList.add("x-kowtow"); pv("dim", true); }, 650);
           setTimeout(() => bell(523, 0.1, 3), 1400);
+          setTimeout(amituofo, 2300);
           setTimeout(() => { world.classList.remove("x-kowtow"); pv("dim", false); $("povPray").classList.remove("x-low"); }, 2300);
           setTimeout(() => { pv("povPray", false); povBusy = false; }, 3300);
           document.querySelectorAll(".x-bower").forEach((b, i) => setTimeout(() => restart(b, "x-now"), i * 120));

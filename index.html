@@ -763,16 +763,16 @@ tr.is-highlight > :last-child { box-shadow: 12px 0 var(--fill-tertiary); }
       .x-bg { inset: -4% -7%; }
       .x-bg img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 28%; }
       .x-crowd2 { left: -15%; width: 130%; bottom: 24%; }
-      .x-crowd2 img { transform: scaleX(-1) scale(.86); transform-origin: bottom center; filter: brightness(.38) saturate(.7) blur(.6px); }
+      .x-crowd2 img { transform: scaleX(-1) scale(.86); transform-origin: bottom center; filter: brightness(.38) saturate(.7); }
       .x-crowd2 .x-bower { animation: x-bow 9.5s ease-in-out 2.5s infinite; transform-origin: bottom center; }
       .x-crowd { left: 1%; width: 98%; bottom: 7%; }
-      .x-crowd img { filter: brightness(.8) saturate(.9) drop-shadow(0 8px 14px #000c); }
+      .x-crowd img { filter: brightness(.8) saturate(.9); }
       .x-crowd .x-bower { animation: x-bow 7s ease-in-out infinite; transform-origin: bottom center; }
       .x-bower.x-now { animation: x-bow-now 1.6s ease-in-out 1 !important; }
       @keyframes x-bow { 0%, 55%, 100% { transform: none; } 72% { transform: translateY(3%) scaleY(.95); } }
       @keyframes x-bow-now { 0%, 100% { transform: none; } 40% { transform: translateY(5%) scaleY(.92); } }
       .x-burner { left: 30%; width: 40%; bottom: 21%; }
-      .x-burner img { filter: drop-shadow(0 10px 20px #000a) brightness(.95); }
+      .x-burner img { filter: brightness(.95); }
       .x-sticks { position: absolute; left: 50%; bottom: 68%; width: 30%; transform: translateX(-50%); opacity: 0; transition: opacity 1s var(--ease-out); }
       .x-sticks.x-on { opacity: 1; }
       .x-sticks circle { animation: x-ember 1.4s ease-in-out infinite alternate; }
@@ -782,7 +782,7 @@ tr.is-highlight > :last-child { box-shadow: 12px 0 var(--fill-tertiary); }
       .x-en { display: block; font: var(--type-caption); opacity: .78; letter-spacing: .02em; }
       .x-hud { position: absolute; top: 0; left: 0; right: 0; padding: calc(env(safe-area-inset-top) + 12px) 60px 0; text-align: center; pointer-events: none; }
       .x-title { margin: 0; font: var(--type-heading); letter-spacing: .3em; color: var(--gold); text-shadow: 0 0 12px #f2c46b66; }
-      .x-merit { margin: 8px auto 0; display: inline-block; padding: 6px 18px; border-radius: var(--r-pill); background: #2a0a07b3; border: 1px solid #f2c46b55; backdrop-filter: blur(6px); transition: box-shadow 600ms var(--ease-out); }
+      .x-merit { margin: 8px auto 0; display: inline-block; padding: 6px 18px; border-radius: var(--r-pill); background: #2a0a07b3; border: 1px solid #f2c46b55;  transition: box-shadow 600ms var(--ease-out); }
       .x-merit b { font: var(--type-figure); color: var(--gold); font-variant-numeric: tabular-nums; }
       .x-merit span { font: var(--type-label); margin-right: 6px; }
       .x-rank { margin: 6px 0 0; font: var(--type-label); color: var(--ink); }
@@ -790,7 +790,7 @@ tr.is-highlight > :last-child { box-shadow: 12px 0 var(--fill-tertiary); }
       .x-ico { position: absolute; top: calc(env(safe-area-inset-top) + 12px); width: var(--tap); height: var(--tap); border-radius: 50%; border: 1px solid #f2c46b55; background: #2a0a07b3; color: var(--gold); font: var(--type-body); display: grid; place-items: center; cursor: pointer; padding: 0; }
       .x-mute { right: 12px; } .x-info { left: 12px; }
       .x-box { position: absolute; right: 4px; top: 40%; width: 76px; z-index: 3; min-height: var(--tap); padding: 0; border: 0; background: none; color: var(--gold); font: var(--type-label); text-align: center; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 4px; text-shadow: 0 1px 4px #000; }
-      .x-box svg { width: 52px; height: 48px; filter: drop-shadow(0 0 10px #f2c46b88) drop-shadow(0 4px 6px #000a); animation: x-boxglow 3.2s ease-in-out infinite; transition: transform var(--dur-quick) var(--ease-out); }
+      .x-box svg { width: 52px; height: 48px; filter: drop-shadow(0 0 8px #f2c46b88); transition: transform var(--dur-quick) var(--ease-out); }
       .x-box .x-en { font-size: 10px; white-space: nowrap; letter-spacing: 0; }
       .x-box:active svg { transform: scale(.92); }
       @keyframes x-boxglow { 50% { filter: drop-shadow(0 0 16px #f2c46bcc) drop-shadow(0 4px 6px #000a); } }
@@ -864,7 +864,7 @@ tr.is-highlight > :last-child { box-shadow: 12px 0 var(--fill-tertiary); }
       .x-dim.x-on { opacity: .93; }
       .x-world.x-kowtow { transform: rotateX(42deg) translateY(-34%) scale(1.6); transition: transform 800ms cubic-bezier(.5,0,.3,1); }
       .x-pov { position: absolute; left: 0; right: 0; bottom: calc(env(safe-area-inset-bottom) + 122px); height: 58%; z-index: 2; pointer-events: none; overflow: visible; }
-      .x-pv { position: absolute; left: 50%; bottom: 0; transform: translate(-50%, 115%); transition: transform 450ms var(--ease-out), opacity 450ms var(--ease-out); filter: drop-shadow(0 -6px 18px #000a); opacity: 0; }
+      .x-pv { position: absolute; left: 50%; bottom: 0; transform: translate(-50%, 115%); transition: transform 450ms var(--ease-out), opacity 450ms var(--ease-out); opacity: 0; }
       .x-pv.x-on { transform: translate(-50%, 0); opacity: 1; }
       .x-pv svg { display: block; width: 100%; height: auto; }
       .x-pfish { width: 100%; height: 100%; }
@@ -888,8 +888,9 @@ tr.is-highlight > :last-child { box-shadow: 12px 0 var(--fill-tertiary); }
       .x-ptube { width: 52%; }
       .x-ptube.x-on .x-shk { animation: x-shake2 140ms ease-in-out infinite alternate; transform-origin: 50% 85%; }
       @keyframes x-shake2 { from { transform: rotate(-7deg) translateY(-3px); } to { transform: rotate(7deg) translateY(3px); } }
-      .x-stage.x-jolt .x-world { animation: x-jolt 160ms ease-out; }
+      
       @keyframes x-jolt { 40% { transform: translateY(1.2%) scale(1.01); } }
+      .x-l { will-change: transform; }
     </style>
   </head>
   <body>
@@ -1192,7 +1193,7 @@ tr.is-highlight > :last-child { box-shadow: 12px 0 var(--fill-tertiary); }
           [[520, 1, 0.16], [880, 0.45, 0.07], [1460, 0.22, 0.04], [260, 0.5, 0.12]].forEach(([f, a, d]) => {
             const o = ac.createOscillator(), g = ac.createGain(); o.type = "sine";
             o.frequency.setValueAtTime(f * p * 1.04, t); o.frequency.exponentialRampToValueAtTime(f * p, t + 0.02);
-            env(g, t, 0.0015, v * a, d); o.connect(g); g.connect(master); if (rvIn) g.connect(rvIn); o.start(t); o.stop(t + d + 0.05);
+            env(g, t, 0.0015, v * a, d); o.connect(g); g.connect(master); o.start(t); o.stop(t + d + 0.05);
           });
           noiseHit(t, v * 0.5, 2600 * p, 0.012, 1.2, 0.0008); noiseHit(t, v * 0.35, 700 * p, 0.05, 2.5);
         }
@@ -1215,57 +1216,9 @@ tr.is-highlight > :last-child { box-shadow: 12px 0 var(--fill-tertiary); }
         function bigBell(v = 1) { if (bellBuf) playBuf(bellBuf, v); else bell(98, 0.16, 9); }
         function initAudio() {
           if (ac) return;
-          try { ac = new (window.AudioContext || window.webkitAudioContext)(); } catch (e) { ac = null; return; }
+          try { ac = new (window.AudioContext || window.webkitAudioContext)({ latencyHint: "playback" }); } catch (e) { ac = null; return; }
           try {
           master = ac.createGain(); master.gain.value = VOL; master.connect(ac.destination);
-          const lp = ac.createBiquadFilter(), dg = ac.createGain();
-          lp.type = "lowpass"; lp.frequency.value = 420; lp.Q.value = 3; dg.gain.value = 0.05; lp.connect(dg); dg.connect(master);
-          [[110, -7, "sawtooth"], [110, 6, "triangle"], [146.8, 4, "sawtooth"], [165, -5, "triangle"]].forEach(([f, d, type]) => {
-            const o = ac.createOscillator(), g = ac.createGain(); o.type = type; o.frequency.value = f; o.detune.value = d;
-            g.gain.value = type === "sawtooth" ? 0.3 : 0.6; o.connect(g); g.connect(lp); o.start();
-          });
-          lfo(lp.frequency, 0.05, 220); lfo(dg.gain, 0.11, 0.018);
-          const n = ac.createBufferSource(), bp = ac.createBiquadFilter(), ng = ac.createGain();
-          n.buffer = noiseBuf(2); n.loop = true; bp.type = "bandpass"; bp.frequency.value = 320; bp.Q.value = 0.9; ng.gain.value = 0.022;
-          n.connect(bp); bp.connect(ng); ng.connect(master); n.start(); lfo(ng.gain, 0.07, 0.01); lfo(bp.frequency, 0.13, 120);
-
-          /* Buddhist BGM: guzheng plucks + bamboo flute over drone, D gong pentatonic */
-          const bgm = ac.createGain(); bgm.gain.value = 0.0; bgm.connect(master); bgm.gain.setTargetAtTime(0.16, ac.currentTime + 8, 4);
-          const rv = ac.createConvolver(); { const len = ac.sampleRate * 3, b = ac.createBuffer(2, len, ac.sampleRate); for (let c = 0; c < 2; c++) { const d = b.getChannelData(c); for (let i = 0; i < len; i++) d[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / len, 3); } rv.buffer = b; }
-          const wet = ac.createGain(); wet.gain.value = 0.35; rv.connect(wet); wet.connect(bgm);
-          rvIn = ac.createGain(); rvIn.gain.value = 0.5; rvIn.connect(rv);
-          const hz = (m) => 440 * Math.pow(2, (m - 69) / 12);
-          function zheng(m, t, v) {
-            const f = hz(m), o = ac.createOscillator(), o2 = ac.createOscillator(), lpf = ac.createBiquadFilter(), g = ac.createGain();
-            o.type = "sawtooth"; o2.type = "triangle"; o.frequency.value = f; o2.frequency.value = f * 2.001;
-            lpf.type = "lowpass"; lpf.frequency.setValueAtTime(f * 6, t); lpf.frequency.exponentialRampToValueAtTime(f * 1.2, t + 1.2);
-            g.gain.setValueAtTime(0.0001, t); g.gain.exponentialRampToValueAtTime(v, t + 0.008); g.gain.exponentialRampToValueAtTime(0.0001, t + 2.6);
-            o.connect(lpf); o2.connect(lpf); lpf.connect(g); g.connect(bgm); g.connect(rv);
-            o.start(t); o2.start(t); o.stop(t + 2.7); o2.stop(t + 2.7);
-          }
-          function flute(m, t, dur, v) {
-            const f = hz(m), o = ac.createOscillator(), vib = ac.createOscillator(), vg = ac.createGain(), g = ac.createGain();
-            o.type = "sine"; o.frequency.value = f; vib.frequency.value = 5; vg.gain.setValueAtTime(0, t); vg.gain.linearRampToValueAtTime(f * 0.006, t + dur * 0.6);
-            vib.connect(vg); vg.connect(o.frequency);
-            g.gain.setValueAtTime(0.0001, t); g.gain.exponentialRampToValueAtTime(v, t + 0.25); g.gain.setValueAtTime(v, t + dur - 0.4); g.gain.exponentialRampToValueAtTime(0.0001, t + dur);
-            o.connect(g); g.connect(bgm); g.connect(rv); o.start(t); vib.start(t); o.stop(t + dur + 0.05); vib.stop(t + dur + 0.05);
-            const nb = ac.createBufferSource(), bp2 = ac.createBiquadFilter(), ngn = ac.createGain(); nb.buffer = noiseBuf(1); nb.loop = true;
-            bp2.type = "bandpass"; bp2.frequency.value = f * 2; bp2.Q.value = 6; ngn.gain.setValueAtTime(0.0001, t); ngn.gain.exponentialRampToValueAtTime(v * 0.25, t + 0.2); ngn.gain.exponentialRampToValueAtTime(0.0001, t + dur);
-            nb.connect(bp2); bp2.connect(ngn); ngn.connect(bgm); nb.start(t); nb.stop(t + dur);
-          }
-          // D E F# A B ; phrase in beats (beat = 0.75s)
-          const Z = [[62,0],[69,1],[71,1.5],[69,2],[66,3],[64,3.5],[62,4],[57,5],[62,6],[64,7],[66,8],[69,9],[66,10],[64,10.5],[62,11],[64,12],[62,14]];
-          const F = [[74,0,3],[76,3,1.5],[74,4.5,1.5],[71,6,3],[69,9,1.5],[71,10.5,1.5],[69,12,3.5]];
-          const BEAT = 0.75, BAR = 16 * BEAT; let next = ac.currentTime + 1.5, round = 0;
-          function sched() {
-            while (next < ac.currentTime + 2) {
-              const t0 = next; Z.forEach(([m, b]) => zheng(m, t0 + b * BEAT + Math.random() * 0.02, 0.06));
-              zheng(50, t0, 0.05); zheng(57, t0 + 8 * BEAT, 0.045);
-              if (round % 2 === 1) F.forEach(([m, b, d]) => flute(m, t0 + b * BEAT, d * BEAT, 0.035));
-              next += BAR; round++;
-            }
-          }
-          sched(); setInterval(sched, 500);
           const bellP = loadBuf(BELL_SRC).then((b) => (bellBuf = b)).catch(() => {});
           const chantP = loadBuf(CHANT_SRC).then((b) => (chantBuf = b)).catch(() => {});
           bellP.then(() => {
@@ -1296,8 +1249,10 @@ tr.is-highlight > :last-child { box-shadow: 12px 0 var(--fill-tertiary); }
         let cv = null, cx = null;
         try { cv = $("fx"); cx = cv.getContext("2d"); } catch (e) { cx = null; }
         let W = 0, H = 0, parts = [], acc = 0, boostUntil = 0;
-        function resize() { W = stage.clientWidth; H = stage.clientHeight; if (!cx) return; try { const d = Math.min(devicePixelRatio || 1, 2); W = stage.clientWidth; H = stage.clientHeight; cv.width = W * d; cv.height = H * d; cx.setTransform(d, 0, 0, d, 0, 0); } catch (e) {} }
+        function resize() { W = stage.clientWidth; H = stage.clientHeight; if (!cx) return; try { const d = 1; W = stage.clientWidth; H = stage.clientHeight; cv.width = W * d; cv.height = H * d; cx.setTransform(d, 0, 0, d, 0, 0); } catch (e) {} }
         addEventListener("resize", resize); try { resize(); } catch (e) {}
+        const smokeSpr = document.createElement("canvas"); smokeSpr.width = smokeSpr.height = 64;
+        { const g2 = smokeSpr.getContext("2d"), gr = g2.createRadialGradient(32, 32, 0, 32, 32, 32); gr.addColorStop(0, "rgba(255,220,170,0.1)"); gr.addColorStop(1, "rgba(255,220,170,0)"); g2.fillStyle = gr; g2.fillRect(0, 0, 64, 64); }
         function frame(now) {
           try {
           if (now - lastInput > 3000) target = Math.sin(now / 7000) * 0.45;
@@ -1308,8 +1263,8 @@ tr.is-highlight > :last-child { box-shadow: 12px 0 var(--fill-tertiary); }
           const sr = stage.getBoundingClientRect(), br = burner.getBoundingClientRect();
           const boost = now < boostUntil, ox = br.left - sr.left + br.width / 2;
           const oy = br.top - sr.top + br.height * 0.32 - (boost ? br.width * 0.36 : 0);
-          acc += boost ? 2.2 : 0.7;
-          while (acc >= 1 && parts.length < (boost ? 110 : 50)) {
+          acc += boost ? 1.1 : 0.35;
+          while (acc >= 1 && parts.length < (boost ? 50 : 22)) {
             acc--; const spark = Math.random() < 0.4;
             parts.push({ x: ox + (Math.random() - 0.5) * br.width * (boost ? 0.2 : 0.3), y: oy, vx: (Math.random() - 0.5) * 0.3, vy: -(0.4 + Math.random() * (spark ? 1.1 : 0.6)), life: 0, max: 140 + Math.random() * 140, r: spark ? 1 + Math.random() * 1.6 : 6 + Math.random() * 8, spark, ph: Math.random() * 6 });
           }
@@ -1320,7 +1275,7 @@ tr.is-highlight > :last-child { box-shadow: 12px 0 var(--fill-tertiary); }
             if (!q.spark) q.r += 0.12;
             const t = q.life / q.max, a = Math.sin(Math.PI * Math.min(t, 1));
             if (q.spark) { cx.fillStyle = `rgba(255,${190 + (q.ph * 10) | 0},110,${a * 0.85})`; cx.beginPath(); cx.arc(q.x, q.y, q.r, 0, 7); cx.fill(); }
-            else { const g = cx.createRadialGradient(q.x, q.y, 0, q.x, q.y, q.r); g.addColorStop(0, `rgba(255,220,170,${a * 0.09})`); g.addColorStop(1, "rgba(255,220,170,0)"); cx.fillStyle = g; cx.beginPath(); cx.arc(q.x, q.y, q.r, 0, 7); cx.fill(); }
+            else { cx.globalAlpha = a * 0.9; cx.drawImage(smokeSpr, q.x - q.r, q.y - q.r, q.r * 2, q.r * 2); cx.globalAlpha = 1; }
             return q.life < q.max;
           });
           } catch (e) {}

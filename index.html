@@ -999,7 +999,7 @@ tr.is-highlight > :last-child { box-shadow: 12px 0 var(--fill-tertiary); }
           </div>
 
           <div class="x-over" id="about" role="dialog" aria-label="说明 · About">
-            <div class="x-card x-small"><p class="x-lvl" style="font: var(--type-heading)">仅供娱乐<span class="x-en">For fun only</span></p><p style="margin-top:12px;font-size:11px;opacity:.7;line-height:1.5">诵经录音《般若心经》 Heart Sutra recitation — Nyarlathotep1001, CC0<br/>钟声 Bonsyou (長命寺梵鐘) — Jnn, CC BY 2.1 JP<br/>via Wikimedia Commons</p></div>
+            <div class="x-card x-small"><p class="x-lvl" style="font: var(--type-heading)">仅供娱乐<span class="x-en">For fun only</span></p><p style="margin-top:12px;font-size:11px;opacity:.7;line-height:1.5">诵经录音：福州南少林寺僧众诵经 Monks chanting, South Shaolin Temple, Fuzhou — mycompasstv (Freesound), CC0<br/>钟声 Bonsyou (長命寺梵鐘) — Jnn, CC BY 2.1 JP<br/>via Wikimedia Commons</p></div>
           </div>
 
           <div class="x-over x-splash x-show" id="splash">
@@ -1179,7 +1179,7 @@ tr.is-highlight > :last-child { box-shadow: 12px 0 var(--fill-tertiary); }
 
         /* ---------- Sound ---------- */
         let ac, master, nb, rvIn = null, muted = false, chantBuf = null, bellBuf = null;
-        const VOL = 0.55, CHANT_SRC = "heart-sutra-v2.mp3", BELL_SRC = "temple-bell-v2.mp3";
+        const VOL = 0.55, CHANT_SRC = "chant-monks-v3.mp3", BELL_SRC = "temple-bell-v2.mp3";
         function noiseBuf(s) { const b = ac.createBuffer(1, ac.sampleRate * s, ac.sampleRate), d = b.getChannelData(0); for (let i = 0; i < d.length; i++) d[i] = Math.random() * 2 - 1; return b; }
         function lfo(param, rate, depth) { const o = ac.createOscillator(), g = ac.createGain(); o.frequency.value = rate; g.gain.value = depth; o.connect(g); g.connect(param); o.start(); }
         function env(g, t, a, v, dec) { g.gain.setValueAtTime(0.0001, t); g.gain.exponentialRampToValueAtTime(v, t + a); g.gain.exponentialRampToValueAtTime(0.0001, t + a + dec); }

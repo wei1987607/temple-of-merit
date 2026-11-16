@@ -4176,12 +4176,12 @@ var qrcode = function() {
           $("monk").classList.add("x-show"); $("monk").setAttribute("aria-hidden", "false");
           monkA.play().catch(() => needTap(true));
         }
-        $("fFull").onclick = () => { primeAudio(); if (!pend || pend.sign !== lastF + 1) { cur = null; chain = null; } const sign = lastF + 1; if (sign < 1) return; if (paidMap()[sign]) replayPaid(sign); else startPay(sign); };
+        $("fFull").onclick = () => { primeAudio(); if (!pend || pend.sign !== lastF + 1) { cur = "usdc"; chain = "sol"; } if (!cur) { cur = "usdc"; chain = "sol"; } const sign = lastF + 1; if (sign < 1) return; if (paidMap()[sign]) replayPaid(sign); else startPay(sign); };
         const pick = (c, ch) => { if (cur === c && chain === ch) return; chain = ch; cur = c; if (paySign) startPay(paySign); };
         $("curU").onclick = () => pick("usdc", "sol");
         $("curS").onclick = () => pick("sol", "sol");
         $("curE").onclick = () => pick("evm", "evm");
-        $("chSol").onclick = () => { if (chain === "sol") return; chain = "sol"; cur = null; if (paySign) startPay(paySign); };
+        $("chSol").onclick = () => { if (chain === "sol") return; chain = "sol"; cur = "usdc"; if (paySign) startPay(paySign); };
         $("payCopy").onclick = async () => { if (await copyTxt(rcpt())) flash("payCopy", "copied"); };
         $("paySave").onclick = () => { saveQr().catch(() => {}); };
         $("payHashBtn").onclick = () => { primeAudio(); claimHash(); };
